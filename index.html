@@ -1,12 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rasch Model Calculator</title>
+    <title>Rasch Modeli</title>
+
+    <!-- Google Fonts (Google Sans) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles/main.css" />
   </head>
   <body>
-    <h1>Rasch Model Calculator</h1>
-    <p>Welcome to the Electron app!</p>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <h4 class="card-title">Rasch Modeli Asosida Baholash Tizimi</h4>
+
+          <p>
+            <strong
+              >Ushbu dastur orqali siz o'z o'quvchilaringizning bajara olish
+              qobilyatini va tuzgan savollaringizning qiyinlik darajasini
+              aniqlaysiz. Ushbu algoritm an'anaviy baholashdan farqli ravishda
+              "Rasch" modeli asosida ishlaydi va "O'zbekiston Bilimni Baholash
+              Agentligi" standartiga soladi.</strong
+            >
+          </p>
+
+          <ul class="collection">
+            <li class="collection-item">
+              <span
+                >O'quvchilar va savollar relatsiyasi avvaldan bo'lishi
+                kerak.</span
+              >
+              <div>
+                <button class="btn">yuklash</button>
+                <button class="yordam-btn" data-popup="popup1">yordam</button>
+              </div>
+            </li>
+            <li class="collection-item">
+              <span>Ma'lumotlarni qo'lda kiritish.</span>
+              <div>
+                <button class="btn">Kiritish</button>
+                <button class="yordam-btn" data-popup="popup2">yordam</button>
+              </div>
+            </li>
+            <li class="collection-item">
+              <span>Natijalarni ko'rish</span>
+              <div>
+                <button class="btn">Natijalar</button>
+                <button class="yordam-btn" data-popup="popup3">yordam</button>
+              </div>
+            </li>
+          </ul>
+
+          <div class="divider"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popups -->
+    <div id="popup1" class="popup">
+      <div class="popup-content">
+        <button class="popup-close">&times;</button>
+        <h3 class="popup-title">Yuklash uchun yordam</h3>
+        <p>
+          Student-Question relatsion matritsasini hosil qiling, bunda 1 to'g'ri
+          javob 0 xato javob.
+        </p>
+        <img
+          class="popup-image"
+          src="./assets/images/yuklash-namuna.png"
+          alt="yuklash namunasi"
+        />
+      </div>
+    </div>
+
+    <div id="popup2" class="popup">
+      <div class="popup-content">
+        <button class="popup-close">&times;</button>
+        <h3 class="popup-title">Ma'lumotlarni qo'lda kiritish</h3>
+        <p>Bu yerda yangi ma'lumotlar qo'shishingiz mumkin.</p>
+      </div>
+    </div>
+
+    <div id="popup3" class="popup">
+      <div class="popup-content">
+        <button class="popup-close">&times;</button>
+        <h3 class="popup-title">Natijalarni ko'rish uchun yordam</h3>
+        <p>Bu yerda hisoblangan natijalarni ko'rishingiz mumkin.</p>
+      </div>
+    </div>
+
+    <script>
+      // Get all yordam buttons
+      const yordamButtons = document.querySelectorAll(".yordam-btn");
+
+      // Add click event listeners to each button
+      yordamButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Get the popup id from data attribute
+          const popupId = button.getAttribute("data-popup");
+          const popup = document.getElementById(popupId);
+
+          // Display the popup
+          popup.style.display = "flex";
+        });
+      });
+
+      // Get all close buttons
+      const closeButtons = document.querySelectorAll(".popup-close");
+
+      // Add click event listeners to close buttons
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Get the parent popup and hide it
+          const popup = button.closest(".popup");
+          popup.style.display = "none";
+        });
+      });
+
+      // Close popup when clicking outside the content
+      document.querySelectorAll(".popup").forEach((popup) => {
+        popup.addEventListener("click", (e) => {
+          if (e.target === popup) {
+            popup.style.display = "none";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
